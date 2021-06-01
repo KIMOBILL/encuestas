@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+        <title>Hello, world!</title>
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="container"><h3>BLOQUE DE EXPERIENCIA</h3></div>
+            <div class="container">
+                <div class="row col-12 border border-dark" style="word-wrap: break-word;">
+                   <h5> <b><label class="form-label">Califique del 1 al 10 siendo 1 poco satisfecho y 10 muy satisfecho</label></b></h5>
+                </div>
+                <div class="row col-12 border border-dark " style="word-wrap: break-word;">
+                    <div class="row col-12">
+                        <b><label class="form-label">1) Su grado de satisfacción con el servicio recibido en la agencia</label></b>
+                    </div>
+                    <div class="container text-center" style="word-wrap: break-word;">
+                        <table class="table table-responsive" border="1">
+                            <tr>
+                                <td></td>
+                                <td><label class="form-check-label" for="P1OP1">1 </label></td>
+                                <td><label class="form-check-label" for="P1OP2">2 </label></td>
+                                <td><label class="form-check-label" for="P1OP3">3 </label></td>
+                                <td><label class="form-check-label" for="P1OP4">4 </label></td>
+                                <td><label class="form-check-label" for="P1OP5">5 </label></td>
+                                <td><label class="form-check-label" for="P1OP6">6 </label></td>
+                                <td><label class="form-check-label" for="P1OP7">7 </label></td>
+                                <td><label class="form-check-label" for="P1OP8">8 </label></td>
+                                <td><label class="form-check-label" for="P1OP9">9 </label></td>
+                                <td><label class="form-check-label" for="P1OP10">10 </label></td>
+                            </tr>
+                            <tr>
+                                <td><b>GRADO DE SATISFACCIÓN</b></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP1" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP2" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP3" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP4" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP5" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP6" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP7" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP8" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP9" onclick="Respuesta('pre1', 'divpre1')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre1" id="P1OP10" onclick="Respuesta('pre1', 'divpre1')"></td>
+                            </tr>
+                        </table>
+                        <div class="row text-center"><b><label>LEVANTAR VOC</label></b></div><br>
+                        <div class="row" id="divpre1"></div><br>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="container">
+                <div class="row col-12 border border-dark" style="word-wrap: break-word;">
+                    <h5><b><label class="form-label">Califique Fácil - Poco Facíl - Difícil - Muy Difícil</label></b></h5>
+                </div>
+                <div class="row col-12 border border-dark " style="word-wrap: break-word;">
+                    <div class="row col-12">
+                        <b><label class="form-label">2) Qué tan Fácil o sencillo es para usted gestionar su requerimiento de Retiro en la agencia</label></b>
+                    </div>
+                    <div class="container text-center" style="word-wrap: break-word;">
+                        <table class="table table-responsive" border="1">
+                            <tr>
+                                <td></td>
+                                <td><label class="form-check-label" for="P2OP1">MUY FACIL </label></td>
+                                <td><label class="form-check-label" for="P2OP2">FACIL </label></td>
+                                <td><label class="form-check-label" for="P2OP3">POCO FACIL </label></td>
+                                <td><label class="form-check-label" for="P2OP4">DIFICIL </label></td>
+                                <td><label class="form-check-label" for="P2OP5">MUY DIFICIL </label></td>
+                            </tr>
+                            <tr>
+                                <td><b>GRADO DE SATISFACCIÓN</b></td>
+                                <td><input class="form-check-input" type="radio" name="pre2" id="P2OP1" onclick="Respuesta('pre2', 'divpre2')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre2" id="P2OP2" onclick="Respuesta('pre2', 'divpre2')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre2" id="P2OP3" onclick="Respuesta('pre2', 'divpre2')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre2" id="P2OP4" onclick="Respuesta('pre2', 'divpre2')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre2" id="P2OP5" onclick="Respuesta('pre2', 'divpre2')"></td>
+                            </tr>
+                        </table>
+                        <div class="row text-center"><b><label>LEVANTAR VOC</label></b></div><br>
+                        <div class="row" id="divpre2"></div><br>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row col-12 border border-dark" style="word-wrap: break-word;">
+                    <h5><b><label class="form-label">Califique del 0 al 10 siendo 0 no lo recomendaría y 10 si lo recomendaría</label></b></h5>
+                </div>
+                <div class="row col-12 border border-dark " style="word-wrap: break-word;">
+                    <div class="row col-12">
+                        <b><label class="form-label">3) ¿en qué grado recomendaría BGR a un familiar, amigo o colega del trabajo?, siendo
+                            0 definitivamente no recomendaría y 10 definitivamente sí lo recomendaría</label></b>
+                    </div>
+                    <div class="container text-center" style="word-wrap: break-word;">
+                        <table class="table table-responsive" border="1">
+                            <tr>
+                                <td></td>
+                                <td><label class="form-check-label" for="P3OP1">0 </label></td>
+                                <td><label class="form-check-label" for="P3OP1">1 </label></td>
+                                <td><label class="form-check-label" for="P3OP2">2 </label></td>
+                                <td><label class="form-check-label" for="P3OP3">3 </label></td>
+                                <td><label class="form-check-label" for="P3OP4">4 </label></td>
+                                <td><label class="form-check-label" for="P3OP5">5 </label></td>
+                                <td><label class="form-check-label" for="P3OP6">6 </label></td>
+                                <td><label class="form-check-label" for="P3OP7">7 </label></td>
+                                <td><label class="form-check-label" for="P3OP8">8 </label></td>
+                                <td><label class="form-check-label" for="P3OP9">9 </label></td>
+                                <td><label class="form-check-label" for="P3OP10">10 </label></td>
+                            </tr>
+                            <tr>
+                                <td><b>GRADO DE RECOMENDACIÓN</b></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP0" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP1" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP2" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP3" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP4" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP5" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP6" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP7" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP8" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP9" onclick="Respuesta('pre3', 'divpre3')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre3" id="P3OP10" onclick="Respuesta('pre3', 'divpre3')"></td>
+                            </tr>
+                        </table>
+                        <div class="row text-center"><b><label>LEVANTAR VOC</label></b></div><br>
+                        <div class="row" id="divpre3"></div><br>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div class="text-center">
+            <h3><b><label>BLOQUE DE ATRIBUTOS</label></b></h3>    
+        </div>
+        <div>
+            <div class="container">
+                <div class="row col-12 border border-dark" style="word-wrap: break-word;">
+                    <h5><b><label class="form-label">Califique del 1 al 7 siendo 1 malo y 7 excelente:</label></b></h5>
+                </div>
+                <div class="row col-12 border border-dark " style="word-wrap: break-word;">
+                    <div class="row col-12">
+                        <b><label class="form-label">1)El ejecutivo que le atendió demostró interés por entender su necesidad</label></b>
+                    </div>
+                    <div class="container text-center" style="word-wrap: break-word;">
+                        <table class="table table-responsive" border="1">
+                            <tr>
+                                <td><label class="form-check-label" for="P4OP1">1 </label></td>
+                                <td><label class="form-check-label" for="P4OP2">2 </label></td>
+                                <td><label class="form-check-label" for="P4OP3">3 </label></td>
+                                <td><label class="form-check-label" for="P4OP4">4 </label></td>
+                                <td><label class="form-check-label" for="P4OP5">5 </label></td>
+                                <td><label class="form-check-label" for="P4OP6">6 </label></td>
+                                <td><label class="form-check-label" for="P4OP7">7 </label></td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input" type="radio" name="pre4" id="P4OP1" onclick="Respuesta('pre4', 'divpre4')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre4" id="P4OP2" onclick="Respuesta('pre4', 'divpre4')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre4" id="P4OP3" onclick="Respuesta('pre4', 'divpre4')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre4" id="P4OP4" onclick="Respuesta('pre4', 'divpre4')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre4" id="P4OP5" onclick="Respuesta('pre4', 'divpre4')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre4" id="P4OP6" onclick="Respuesta('pre4', 'divpre4')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre4" id="P4OP7" onclick="Respuesta('pre4', 'divpre4')"></td>
+                            </tr>
+                        </table>
+                        <div class="row text-center"><b><label>LEVANTAR VOC</label></b></div><br>
+                        <div class="row" id="divpre4"></div><br>
+                    </div>
+                </div>
+                <div class="row col-12 border border-dark " style="word-wrap: break-word;">
+                    <div class="row col-12">
+                        <b><label class="form-label">2)la agilidad con la que el ejecutivo atendió su requerimiento</label></b>
+                    </div>
+                    <div class="container text-center" style="word-wrap: break-word;">
+                        <table class="table table-responsive" border="1">
+                            <tr>
+                                <td><label class="form-check-label" for="P5OP1">1 </label></td>
+                                <td><label class="form-check-label" for="P5OP2">2 </label></td>
+                                <td><label class="form-check-label" for="P5OP3">3 </label></td>
+                                <td><label class="form-check-label" for="P5OP4">4 </label></td>
+                                <td><label class="form-check-label" for="P5OP5">5 </label></td>
+                                <td><label class="form-check-label" for="P5OP6">6 </label></td>
+                                <td><label class="form-check-label" for="P5OP7">7 </label></td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input" type="radio" name="pre5" id="P5OP1" onclick="Respuesta('pre5', 'divpre5')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre5" id="P5OP2" onclick="Respuesta('pre5', 'divpre5')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre5" id="P5OP3" onclick="Respuesta('pre5', 'divpre5')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre5" id="P5OP4" onclick="Respuesta('pre5', 'divpre5')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre5" id="P5OP5" onclick="Respuesta('pre5', 'divpre5')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre5" id="P5OP6" onclick="Respuesta('pre5', 'divpre5')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre5" id="P5OP7" onclick="Respuesta('pre5', 'divpre5')"></td>
+                            </tr>
+                        </table>
+                        <div class="row text-center"><b><label>LEVANTAR VOC</label></b></div><br>
+                        <div class="row" id="divpre5"></div><br>
+                    </div>
+                </div>
+                <div class="row col-12 border border-dark " style="word-wrap: break-word;">
+                    <div class="row col-12">
+                        <b><label class="form-label">3)Disponibilidad de Cajeros automáticos</label></b>
+                    </div>
+                    <div class="container text-center" style="word-wrap: break-word;">
+                        <table class="table table-responsive" border="1">
+                            <tr>
+                                <td><label class="form-check-label" for="P6OP1">1 </label></td>
+                                <td><label class="form-check-label" for="P6OP2">2 </label></td>
+                                <td><label class="form-check-label" for="P6OP3">3 </label></td>
+                                <td><label class="form-check-label" for="P6OP4">4 </label></td>
+                                <td><label class="form-check-label" for="P6OP5">5 </label></td>
+                                <td><label class="form-check-label" for="P6OP6">6 </label></td>
+                                <td><label class="form-check-label" for="P6OP7">7 </label></td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input" type="radio" name="pre6" id="P6OP1" onclick="Respuesta('pre6', 'divpre6')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre6" id="P6OP2" onclick="Respuesta('pre6', 'divpre6')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre6" id="P6OP3" onclick="Respuesta('pre6', 'divpre6')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre6" id="P6OP4" onclick="Respuesta('pre6', 'divpre6')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre6" id="P6OP5" onclick="Respuesta('pre6', 'divpre6')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre6" id="P6OP6" onclick="Respuesta('pre6', 'divpre6')"></td>
+                                <td><input class="form-check-input" type="radio" name="pre6" id="P6OP7" onclick="Respuesta('pre6', 'divpre6')"></td>
+                            </tr>
+                        </table>
+                        <div class="row text-center"><b><label>LEVANTAR VOC</label></b></div><br>
+                        <div class="row" id="divpre6"></div><br>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div>
+            
+        </div>
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+        -->
+        <script>
+            function Respuesta(pregunta, div) {
+                var respuesta = "<div><label class='form-label' for='txt" + pregunta + "'>POR FAVOR DESCRIBA POR QUE ESCOGIO ESA CALIFICACION</label>"
+                        + "<br><input class='form-control' type='text' name='txt" + pregunta + "' id='txt" + pregunta + "'/></div>";
+                $("#"+div).html(respuesta);
+            }
+        </script>
+    </body>
+</html>
