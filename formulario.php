@@ -63,12 +63,12 @@ include 'layout/menu.php';
             <a href="#" class="list-group-item list-group-item-action fas fa-check-double " onclick="PreOptionMulti();"> Selección Multiple</a>
             <a href="#" class="list-group-item list-group-item-action far fa-calendar-check " onclick="PreOptionSelect();"> Selectivas</a>                    
         </div> 
-        <div class="list-group">
+<!--        <div class="list-group">
             <label class="list-group-item list-group-item-action active">Medidores de Indicadores</label>
             <a href="#" class="list-group-item list-group-item-action fas fa-chart-line " onclick="INS();">  INS</a>
             <a href="#" class="list-group-item list-group-item-action fas fa-chart-line " onclick="CES();">  CES</a>  
             <a href="#" class="list-group-item list-group-item-action fas fa-chart-line " onclick="NPS();">  NPS</a>                  
-        </div>
+        </div>-->
         <div class="list-group">
             <label class="list-group-item list-group-item-action active">Calificación gráfica</label>
             <a href="#" class="list-group-item list-group-item-action far fa-star fa-star " onclick="Estrellas();"> Calificación de estrellas</a>
