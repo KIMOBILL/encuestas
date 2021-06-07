@@ -510,7 +510,7 @@ function PreOptionSelect() {
     arrayAux["Nombre"] = "";
     arrayAux["inputOption"] = '2';
     arrayAux["valOption"] = 'ValSelect';
-    arrayAux["tipo"] = "Informativo";
+    arrayAux["tipo"] = "";
     arrayAux["estado"] = '0';
     window.arrayInput[cont] = arrayAux;
     var estructura = '<div class="container">'
@@ -519,13 +519,20 @@ function PreOptionSelect() {
             + "<input class='form-control' type='text' id='txtnombre' onKeyUp='lblPregunta();'/>"
             + '</div>'
             + "<div><br></div>"
-            + '<div class="row">'
-            + '<label for="txtnombre" class="form-label"><b>Descripción de las Respuestas</b></label>'
-            + '<div class="col-10">'
+            +"<div><label>Atributo:</label></div>"
+            +"<div>"+AtribCes()+"</div>"
+            +"<div><br></div>"
+            + '<div class="row">'            
+            + '<div class="col-5">'
+            + '<label for="txtresp" class="form-label"><b>Descripción </b></label>'
             + "<input type='text' class='form-control' id='txtresp' />"
             + '</div>'
+            + '<div class="col-5">'
+            + '<label for="txtrespv" class="form-label"><b>Valor</b></label>'
+            + "<input type='text' class='form-control' id='txtrespv' />"
+            + '</div>'
             + '<div class="col-2">'
-            + "<button type='button' class='btn btn-outline-primary' onclick='addResSelect(" + '"' + name + '"' + ");'>+</button>"
+            + "<br><button type='button' class='btn btn-outline-primary' onclick='addResSelect(" + '"' + name + '"' + ");'>+</button>"
             + '</div>'
             + '</div>'
             + "<div><br></div>"
@@ -551,17 +558,26 @@ function PreOptionSelect() {
 
 function addResSelect(nombre) {
     var dato = (document.getElementById("txtresp").value).trim();
-    if(dato==""){
+    var valor = (document.getElementById("txtrespv").value).trim();
+    if(dato=="" ){
         swal("ERROR...!", "Falta Ingresar la Descripción de la Respuesta...", "warning");
         document.getElementById("txtresp").value = "";
         document.getElementById("txtresp").focus();
     }else{
-        const $select = document.querySelector("#" + nombre);
+        if(valor == ""){
+            swal("ERROR...!", "Falta Ingresar el valor de la Respuesta...", "warning");
+            document.getElementById("txtrespv").value = "";
+            document.getElementById("txtrespv").focus();
+        }else{
+            
+        }
+    const $select = document.querySelector("#" + nombre);
     const option = document.createElement('option');
-    option.value = dato;
+    option.value = valor;
     option.text = dato;
     $select.appendChild(option);
     document.getElementById("txtresp").value = "";
+    document.getElementById("txtrespv").value = "";
     document.getElementById("txtresp").focus();
     }
 }
@@ -574,7 +590,12 @@ function AddPre() {
     var cont = window.arrayInput.length;
     for (var i = 0; i < cont; i++) {
         if (window.arrayInput[i]["div"] === Nombre) {
-            window.arrayInput[i]["tipo"] = "Informativo";
+            if (aux===0){
+                aux=aux+1;
+                window.arrayInput[i]["tipo"] = addatrib();
+            }else{
+                window.arrayInput[i]["tipo"] = "Respuesta";
+            }
         }
     }
     if (pre == "" || res == "") {
@@ -626,7 +647,7 @@ function Pregunta() {
             + '<div class="row">'
             + '<label for="txtnombre" class="form-label"><b>Descripcion de la Pregunta</b></label>'
             + "<input class='form-control' type='text' id='txtnombre' onKeyUp='lblPregunta();'/><br>"
-            + '</div>'
+            + '</div>'            
             +"<div><br></div>"
             + "<div class='row'><b><label>Objeto a Insertar :</label></b></div>"
             +"<div><br></div>"
@@ -903,6 +924,9 @@ function OptionRespuesta() {
             + '<div><label for="txtnombre" class="form-label"><b>Pregunta</b></label></div>'
             + "<div><input class='form-control' type='text' id='txtnombre' onKeyUp='lblPregunta();'/></div>"
             + '</div>'
+            +"<div><br></div>"  
+            +"<div><label>Atributo:</label></div>"
+            +"<div>"+AtribGeneral()+"</div>"
             +"<div><br></div>"            
             + "<div class='row'><b><label>Objeto a Insertar :</label></b></div>"
             +"<div><br></div>"
@@ -971,161 +995,42 @@ function OptionRespuesta() {
 }
 
 
-
-
-
+function AtribGeneral(){
+    var atributo="<select id='selectAtrib' class='form-select'>"
+                +"<option value='Informativa' selected>Informativa</option>"
+                +"<option value='Agilidad' >Agilidad</option>"
+                +"<option value='Amabilidad' >Amabilidad</option>"    
+                +"<option value='Bioseguridad' >Bioseguridad</option>"
+                +"<option value='NPS' >Recomendación</option>"
+                +"<option value='Recompra' >Recompra</option>"
+                +"<option value='INS' >Satisfacción General</option>"
+                +"</select>";
+    return atributo;
+}
+function AtribCes(){
+    var atributo="<select id='selectAtrib' class='form-select'>"
+                +"<option value='Informativa' selected >Informativa</option>"
+                +"<option value='CES' >Esfuerzo</option>"
+                +"</select>";
+    return atributo;
+}
+function addatrib(){    
+    return ($('select[id=selectAtrib]').val());
+}
 function AddPre4() {
     $("#txtrespuesta").html("");
     var Nombre = NewDiv("div");
     var pre = $("#divPre").html();
     var res = $("#divRes").html();
+    var aux=0;
     var cont = window.arrayInput.length;
     for (var i = 0; i < cont; i++) {
         if (window.arrayInput[i]["div"] === Nombre) {
-            window.arrayInput[i]["tipo"] = "Informativo";
-        }
-    }
-    estadoObjetos(Nombre, 1);
-    if (pre == "" || res == "") {
-        swal("ERROR...!", "Falta Ingresar la Descripción de la Pregunta o las Respuestas...", "warning");
-    } else {
-        var pregunta = '<div class="container" id="' + Nombre + '">' +
-                '<div class="row">' +
-                '<div class="col-2"></div>' +
-                '<div class="col-8 text-start " style="word-wrap: break-word;">' + pre + '<br></div>' +
-                '<div class="col-2">' +
-                '<div id="divclose" class="text-end">' +
-                '<button onclick="Remover(' + "'" + Nombre + "'" + ')" class="btn btn-outline-danger">Delete</button>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="row">' +
-                '<div class="col-2"></div>' +
-                '<div class="col-8 text-start border border-dark rounded-3" style="word-wrap: break-word;"><br>' + res + '<br></div>' +
-                '<div class="col-2"></div>' +
-                '</div>' +
-                '<br>' +
-                '</div>';
-        var dataAnterior = $("#objetos").html();
-        var dataAnterior = dataAnterior + pregunta;
-        $("#objetos").html(dataAnterior);
-        estadoObjetos(Nombre, 1);
-        $("#divPre").html("");
-        $("#divRes").html("");
-        $('#staticBackdrop').modal('hide');
-    }
-}
-
-
-function INS() {
-    const num = ContDiv();
-    abrirmodal();
-    const name = 'txtOption' + num;
-    var cont = window.arrayInput.length;
-    var arrayAux = [];
-    arrayAux["div"] = "div" + num;
-    arrayAux["input"] = name;
-    arrayAux["Nombre"] = "Respuesta";
-    arrayAux["inputOption"] = '1';
-    arrayAux["valOption"] = '';
-    arrayAux["tipo"] = "";
-    arrayAux["estado"] = '0';
-    window.arrayInput[cont] = arrayAux;
-    var cont = window.arrayInput.length;
-    var arrayAux = [];
-    arrayAux["div"] = "div" + num;
-    arrayAux["input"] = "res" + name;
-    arrayAux["Nombre"] = "Respuesta" + num;
-    arrayAux["inputOption"] = '0';
-    arrayAux["valOption"] = '';
-    arrayAux["tipo"] = "";
-    arrayAux["estado"] = '0';
-    window.arrayInput[cont] = arrayAux;
-    var estructura = '<div class="container">'
-            + '<div class="row">'
-            + '<label for="txtnombre" class="form-label"><b>Pregunta INS</b></label>'
-            + "<div><input class='form-control' type='text' id='txtnombre' onKeyUp='lblPregunta();'/><br></div>"
-            + '</div>'
-            + "<div><b><label>Objeto a Insertar :</label></b></div>"
-            + '<div><br></div>'
-            +"<div class='row border border-dark rounded-3'>"
-            + '<div><br></div>'
-            + "<div id='divPre'></div>"
-            + '<div><br></div>'
-            + "<div id='divRes' class='row'><div>"
-            + "<label><b>CALIFICACION:</b></label>"
-    
-            + '<div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '1" value="1" onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '1" >1</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '2" value="2"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '2">2</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '3" value="3"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '3">3</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '4" value="4"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '4">4</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '5" value="5"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '5">5</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '6" value="6"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '6">6</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '7" value="7"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '7">7</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '8" value="8"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '7">8</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '9" value="9"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '9">9</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '10" value="10"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '10" >10</label>'
-            + '</div>'
-            + '</div>'
-    
-            +'<div><br></div>'
-            + "<div id='div" + name + "'style='display : none;'><label class='form-label' for='res" + name + "'>¿Cual es el motivo de su calificación?</label>"
-            + "<br><input class='form-control' type='text' name='res" + name + "' id='res" + name + "'/><br><br<</div>";
-            +'</div></div>'
-            + '<div><br></div>'
-            +"</div>"
-            + '</div>';
-    document.getElementById('staticBackdropLabel').innerHTML = "NIVEL DE SATISFACCIÓN";
-    $("#estructura").html(estructura);
-    $("#divButton").html("<button  type='button' class='btn btn-outline-success' onclick='AddINS();' >AGREGAR</button>");
-    document.getElementById("txtnombre").focus();
-}
-
-
-function AddINS() {
-    $("#txtrespuesta").html("");
-    var Nombre = NewDiv("div");
-    var pre = $("#divPre").html();
-    var res = $("#divRes").html();
-    var aux = 0;
-    var cont = window.arrayInput.length;
-    for (var i = 0; i < cont; i++) {
-        if (window.arrayInput[i]["div"] === Nombre) {
-            if (aux === 0) {
-                aux = aux + 1;
-                window.arrayInput[i]["tipo"] = "INS";
-            } else {
-                window.arrayInput[i]["tipo"] = "Informativo";
+            if (aux===0){
+                aux=aux+1;
+                window.arrayInput[i]["tipo"] = addatrib();
+            }else{
+                window.arrayInput[i]["tipo"] = "Respuesta";
             }
         }
     }
@@ -1137,262 +1042,6 @@ function AddINS() {
                 '<div class="row">' +
                 '<div class="col-2"></div>' +
                 '<div class="col-8 text-start " style="word-wrap: break-word;">' + pre + '<br></div>' +
-                '<div class="col-2">' +
-                '<div id="divclose" class="text-end">' +
-                '<button onclick="Remover(' + "'" + Nombre + "'" + ')" class="btn btn-outline-danger">Delete</button>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="row">' +
-                '<div class="col-2"></div>' +
-                '<div class="col-8 text-start border border-dark rounded-3" style="word-wrap: break-word;"><br>' + res + '<br></div>' +
-                '<div class="col-2"></div>' +
-                '</div>' +
-                '<br>' +
-                '</div>';
-        var dataAnterior = $("#objetos").html();
-        var dataAnterior = dataAnterior + pregunta;
-        $("#objetos").html(dataAnterior);
-        estadoObjetos(Nombre, 1);
-        $("#divPre").html("");
-        $("#divRes").html("");
-        $('#staticBackdrop').modal('hide');
-    }
-}
-
-
-function NPS() {
-    const num = ContDiv();
-    abrirmodal();
-    const name = 'txtOption' + num;
-    var cont = window.arrayInput.length;
-    var arrayAux = [];
-    arrayAux["div"] = "div" + num;
-    arrayAux["input"] = name;
-    arrayAux["Nombre"] = "Respuesta";
-    arrayAux["inputOption"] = '1';
-    arrayAux["valOption"] = '';
-    arrayAux["tipo"] = "";
-    arrayAux["estado"] = '0';
-    window.arrayInput[cont] = arrayAux;
-    var cont = window.arrayInput.length;
-    var arrayAux = [];
-    arrayAux["div"] = "div" + num;
-    arrayAux["input"] = "res" + name;
-    arrayAux["Nombre"] = "Respuesta" + num;
-    arrayAux["inputOption"] = '0';
-    arrayAux["valOption"] = '';
-    arrayAux["tipo"] = "";
-    arrayAux["estado"] = '0';
-    window.arrayInput[cont] = arrayAux;
-    var estructura = '<div class="container">'
-            + '<div class="row">'
-            + '<label for="txtnombre" class="form-label"><b>Pregunta de Recomendación</b></label>'
-            + "<div><input class='form-control' type='text' id='txtnombre' onKeyUp='lblPregunta();'/></div>"
-            + '</div>'
-            + '<div><br></div>'
-            + '<div><b><label>Objeto a Insertar :</label></b></div>'
-            + '<div><br></div>'
-            +"<div class='row border border-dark rounded-3'>"
-            + '<div><br></div>'
-            + "<div id='divPre'></div>"
-            + '<div><br></div>'
-            + "<div id='divRes' class='row'>" 
-            + "<div>"
-            + "<label><b>CALIFICACION:</b></label>"    
-            + '<div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '0" value="0" onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '0" >0</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '1" value="1" onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '1" >1</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '2" value="2"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '2">2</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '3" value="3"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '3">3</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '4" value="4"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '4">4</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '5" value="5"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '5">5</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '6" value="6"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '6">6</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '7" value="7"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '7">7</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '8" value="8"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '7">8</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '9" value="9"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '9">9</label>'
-            + '</div>'
-            + '<div class="form-check form-check-inline">'
-            + '<input class="form-check-input" type="radio" name="' + name + '" id="' + name + '10" value="10"  onclick="calificar(' + "'" + name + "'" + ');">'
-            + '<label class="form-check-label" for="' + name + '10" >10</label>'
-            + '</div>'
-            + '</div>'
-            + '<div><br></div>'
-            + "<div id='div" + name + "'style='display : none;'><label class='form-label' for='res" + name + "'>¿Cual es el motivo de su calificacion?</label>"
-            + "<br><input class='form-control' type='text' name='res" + name + "' id='res" + name + "'/><br></div>";
-    +'</div></div>'
-+ '</div>'
-            + '</div>';
-    document.getElementById('staticBackdropLabel').innerHTML = "RECOMENDACIÓN";
-    $("#estructura").html(estructura);
-    $("#divButton").html("<button  type='button' class='btn btn-outline-success' onclick='AddNPS();' >AGREGAR</button>");
-    document.getElementById("txtnombre").focus();
-}
-
-
-function AddNPS() {
-    $("#txtrespuesta").html("");
-    var Nombre = NewDiv("div");
-    var pre = $("#divPre").html();
-    var res = $("#divRes").html();
-    var aux = 0;
-    var cont = window.arrayInput.length;
-    for (var i = 0; i < cont; i++) {
-        if (window.arrayInput[i]["div"] === Nombre) {
-            if (aux === 0) {
-                aux = aux + 1;
-                window.arrayInput[i]["tipo"] = "NPS";
-            } else {
-                window.arrayInput[i]["tipo"] = "Informativo";
-            }
-
-        }
-    }
-    estadoObjetos(Nombre, 1);
-    if (pre == "" || res == "") {
-        swal("ERROR...!", "Falta Ingresar la Descripción de la Pregunta o las Respuestas...", "warning");
-    } else {
-        var pregunta = '<div class="container" id="' + Nombre + '">' +
-                '<div class="row">' +
-                '<div class="col-2"></div>' +
-                '<div class="col-8 text-start " style="word-wrap: break-word;">' + pre + '<br></div>' +
-                '<div class="col-2">' +
-                '<div id="divclose" class="text-end">' +
-                '<button onclick="Remover(' + "'" + Nombre + "'" + ')" class="btn btn-outline-danger">Delete</button>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="row">' +
-                '<div class="col-2"></div>' +
-                '<div class="col-8 text-start border border-dark rounded-3" style="word-wrap: break-word;"><br>' + res + '<br></div>' +
-                '<div class="col-2"></div>' +
-                '</div>' +
-                '<br>' +
-                '</div>';
-        var dataAnterior = $("#objetos").html();
-        var dataAnterior = dataAnterior + pregunta;
-        $("#objetos").html(dataAnterior);
-        estadoObjetos(Nombre, 1);
-        $("#divPre").html("");
-        $("#divRes").html("");
-        $('#staticBackdrop').modal('hide');
-    }
-}
-
-
-function CES() {
-    abrirmodal();
-    const num = ContDiv();
-    const name = 'txtSelect' + num;
-    var cont = window.arrayInput.length;
-    var arrayAux = [];
-    arrayAux["div"] = "div" + num;
-    arrayAux["input"] = name;
-    arrayAux["Nombre"] = "";
-    arrayAux["inputOption"] = '2';
-    arrayAux["valOption"] = 'ValSelect';
-    arrayAux["tipo"] = "";
-    arrayAux["estado"] = '0';
-    window.arrayInput[cont] = arrayAux;
-    var cont = window.arrayInput.length;
-    var arrayAux = [];
-    arrayAux["div"] = "div" + num;
-    arrayAux["input"] = "res" + name;
-    arrayAux["Nombre"] = "Respuesta" + num;
-    arrayAux["inputOption"] = '0';
-    arrayAux["valOption"] = '';
-    arrayAux["tipo"] = "";
-    arrayAux["estado"] = '0';
-    window.arrayInput[cont] = arrayAux;
-    var estructura = '<div class="container">'
-
-            + '<div class="row">'
-            + '<label for="txtnombre" class="form-label"><b>Descripción de la Pregunta</b></label>'
-            + "<input class='form-control' type='text' id='txtnombre' onKeyUp='lblPregunta();'/><br>"
-            + '</div>'
-            + '<div class="row">'
-            + '<label for="txtnombre" class="form-label"><b>Descripción de las Respuestas</b></label>'
-            + '<div class="col-10">'
-            + "<input type='text' class='form-control' id='txtresp' />"
-            + '</div>'
-            + '<div class="col-2">'
-            + "<button type='button' class='btn btn-outline-primary' onclick='addResSelect(" + '"' + name + '"' + ");'>+</button>"
-            + '</div></div>'
-            + '<div><br></div>'
-            + "<div><b><label>Objeto a Insertar :</label></b></div>"
-            + '<div><br></div>'
-            +"<div class='row border border-dark rounded-3'>"
-            + '<div><br></div>'
-            + "<div id='divPre'></div>"
-            + '<div><br></div>'
-            + "<div id='divRes'>"
-            + '<div><select id="' + name + '" class="form-select" aria-label="Default select example" onchange="calificar2(' + "'" + name + "'" + ');">'
-            + '<option value="null" selected>Seleccione una Opción</option>'
-            + '</select></div>'
-            + '<div><br></div>'
-            + "<div id='div" + name + "' style='display : none;'><label class='form-label' for='res" + name + "'>¿Cual es el motivo de su calificacion?</label>"
-            + "<br><input class='form-control' type='text' name='res" + name + "' id='res" + name + "'/><br></div>";
-            +"</div>"
-            +"</div>"
-            +'</div>';
-    document.getElementById('staticBackdropLabel').innerHTML = "PREGUNTAS CES";
-    $("#estructura").html(estructura);
-    $("#divButton").html("<button  type='button' class='btn btn-outline-success' onclick='AddCES();' >AGREGAR</button>");
-    document.getElementById("txtnombre").focus();
-}
-
-function AddCES() {
-    var Nombre = NewDiv("div");
-    var pre = $("#divPre").html();
-    var res = $("#divRes").html();
-    var aux = 0;
-    var cont = window.arrayInput.length;
-    for (var i = 0; i < cont; i++) {
-        if (window.arrayInput[i]["div"] === Nombre) {
-            if (aux === 0) {
-                aux = aux + 1;
-                window.arrayInput[i]["tipo"] = "CES";
-            } else {
-                window.arrayInput[i]["tipo"] = "Informativo";
-            }
-        }
-    }
-    if (pre == "" || res == "") {
-        swal("ERROR...!", "Falta Ingresar la Descripción de la Pregunta o las Respuestas...", "warning");
-    } else {
-        var pregunta = '<div class="container" id="' + Nombre + '" >' +
-                '<div class="row">' +
-                '<div class="col-2"></div>' +
-                '<div class="col-8 text-start" style="word-wrap: break-word;">' + pre + '<br></div>' +
                 '<div class="col-2">' +
                 '<div id="divclose" class="text-end">' +
                 '<button onclick="Remover(' + "'" + Nombre + "'" + ')" class="btn btn-outline-danger">Delete</button>' +
